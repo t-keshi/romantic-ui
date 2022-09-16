@@ -1,6 +1,6 @@
 export { Avatar } from './Avatar/Avatar';
 export { Button } from './Button/Button';
-export { Backdrop } from './Dialog/Backdrop';
+export { Backdrop } from './Backdrop/Backdrop';
 export { Container } from './Container/Container';
 export { Dialog } from './Dialog/Dialog';
 export { Fade } from './Fade/Fade';
@@ -17,3 +17,6 @@ export { TableContainer } from './Table/TableContainer';
 export { TableHead } from './Table/TableHead';
 export { TableRow } from './Table/TableRow';
 export { Typography } from './Typography/Typography';
+export { Unstable_Grid as Grid } from '@mui/system';
+export { Box } from '@mui/system';
+export { Stack } from '@mui/system';

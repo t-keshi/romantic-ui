@@ -6,7 +6,7 @@ import { createTransition } from '../../util/createTransition';
 import { OverrideComponent, OverrideStyleProps, Size } from '../../util/utilityTypes';
 
 type StyleProps = {
-  size: Size;
+  size?: Size;
   variant?: 'contained' | 'outlined' | 'text' | 'disabled';
   color?: 'inherit' | 'primary' | 'secondary';
   startIcon?: React.ReactNode;
@@ -16,7 +16,7 @@ type StyleProps = {
 type BaseProps = {
   children: React.ReactNode;
   className?: string;
-} & JSX.IntrinsicElements['button'];
+};
 
 type Props<TElementType extends React.ElementType = 'li'> = OverrideStyleProps<
   StyleProps,
@@ -234,13 +234,12 @@ export const renderFunction = <TElementType extends React.ElementType = 'button'
   );
   const restProps = {
     ...rest,
-    ...(as === 'button' && { type }),
+    ...(as === 'button' && { type: type as JSX.IntrinsicElements['button']['type'] }),
   };
 
   return (
     <ButtonElement
       className={cx(buttonClasses.root, className)}
-      type={type}
       variant={variant}
       color={color}
       size={size}

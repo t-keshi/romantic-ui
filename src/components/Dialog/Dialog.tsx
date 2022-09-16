@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../theme';
 import { ModalUnstyled, ModalUnstyledProps } from '@mui/base';
-import { Backdrop } from './Backdrop';
+import { Backdrop } from '../Backdrop/Backdrop';
 
 type StyleProps = {
   direction?: 'row' | 'column';
