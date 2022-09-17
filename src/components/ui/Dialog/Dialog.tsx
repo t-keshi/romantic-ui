@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../../theme';
 import { ModalUnstyled, ModalUnstyledProps } from '@mui/base';
-import { Fade } from '../Fade/Fade';
+import { Fade } from '../../transition/Fade/Fade';
 import { MdClose } from 'react-icons/md';
 
 type StyleProps = {

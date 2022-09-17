@@ -3,7 +3,7 @@ export { Button } from './Button/Button';
 export { Backdrop } from './Backdrop/Backdrop';
 export { Container } from './Container/Container';
 export { Dialog } from './Dialog/Dialog';
-export { Fade } from './Fade/Fade';
+export { Fade } from '../transition/Fade/Fade';
 export { Flex } from './Flex/Flex';
 export { Header } from './Header/Header';
 export { IconButton } from './IconButton/IconButton';
