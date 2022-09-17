@@ -1,14 +1,17 @@
-import { css, Global, ThemeProvider, useTheme } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { breakpointsTheme } from './breakpoints';
 import { paletteTheme } from './palette';
 import { shadowTheme } from './shadow';
 import { typographyTheme } from './typography';
 import { zIndexTheme } from './zIndex';
-import { CSSProperties } from '@mui/styled-engine';
 import createTheme from '@mui/system/createTheme';
+import {
+  CreateMUIStyled,
+  styled as muiStyled,
+  ThemeProvider,
+  useTheme as useMuiTheme,
+} from '@mui/system';
 import { Overwrite } from 'utility-types';
-import { CreateMUIStyled, styled as muiStyled } from '@mui/system';
-import '@mui/system/';
 
 const baseTheme = {
   ...paletteTheme,
@@ -20,15 +23,11 @@ const baseTheme = {
 
 export const theme = createTheme(baseTheme);
 
-export const styled = muiStyled as CreateMUIStyled<Theme>;
-
 export type Theme = Overwrite<typeof theme, typeof baseTheme>;
 
-export type PropsWithTheme<StyleProps> = {
-  theme: Theme;
-} & Required<StyleProps>;
+export const styled = muiStyled as CreateMUIStyled<Theme>;
 
-export type StyleFn = CreateMUIStyled<Theme>;
+export const useTheme = useMuiTheme as () => Theme;
 
 const CSSReset = () => {
   return (
