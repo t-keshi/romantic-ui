@@ -1,7 +1,7 @@
 import React from 'react';
 import romanticUI from '../../assets/logo.svg';
 import { Header } from '../../components/Header/Header';
-import { Avatar } from '../../components/Avatar/Avatar';
+import { Avatar } from '../../components/ui/Avatar/Avatar';
 import { Typography } from '../../components/Typography/Typography';
 import { css } from '@emotion/css';
 import { theme } from '../../theme';
