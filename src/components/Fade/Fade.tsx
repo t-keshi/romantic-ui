@@ -4,7 +4,7 @@ import { TransitionProps } from 'react-transition-group/Transition';
 
 type FadeProps = {
   children: React.ReactElement;
-  inProp?: boolean;
+  in?: boolean;
   timeout?:
     | {
         enter: number;
@@ -17,7 +17,7 @@ type FadeProps = {
 const defaultTimeout = 300;
 
 export const Fade: React.FC<FadeProps> = (props) => {
-  const { children, inProp = false, timeout = defaultTimeout, style, ...rest } = props;
+  const { children, in: inProp = false, timeout = defaultTimeout, style, ...rest } = props;
 
   return (
     <Transition appear in={inProp} timeout={timeout} role="presentation" {...rest}>
