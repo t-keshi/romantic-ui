@@ -64,7 +64,7 @@ const StyledTab = styled(TabUnstyled)<
   }),
   ...(textColor === 'inherit' && {
     color: 'inherit',
-    opacity: 0.6, // same opacity as theme.palette.text.secondary
+    opacity: 0.6,
     [`&.${tabClasses.selected}`]: {
       opacity: 1,
     },

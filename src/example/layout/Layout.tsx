@@ -1,14 +1,14 @@
 import React from 'react';
 import romanticUI from '../../assets/logo.svg';
-import { Header } from '../../components/Header/Header';
+import { Header } from '../../components/ui/Header/Header';
 import { Avatar } from '../../components/ui/Avatar/Avatar';
-import { Typography } from '../../components/Typography/Typography';
+import { Typography } from '../../components/ui/Typography/Typography';
 import { css } from '@emotion/css';
 import { theme } from '../../theme';
-import { IconButton } from '../../components/IconButton/IconButton';
+import { IconButton } from '../../components/ui/IconButton/IconButton';
 import { MdArrowDropDown } from 'react-icons/md';
-import { Flex } from '../../components/Flex/Flex';
-import { Container } from '../../components/Container/Container';
+import { Flex } from '../../components/ui/Flex/Flex';
+import { Container } from '../../components/ui/Container/Container';
 
 const logo = css`
   width: 200px;

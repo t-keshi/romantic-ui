@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
-import { styled } from '../../theme';
+import { styled } from '../../../theme';
 
 type StyleProps = {
   invisible?: boolean;

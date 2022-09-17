@@ -4,10 +4,9 @@ import {
   formControlUnstyledClasses,
   FormControlUnstyledProps,
   FormControlUnstyledState,
-  InputUnstyled,
 } from '@mui/base';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { styled } from '../../../theme';
 import { StyledFormHelperText } from '../../internal/StyledFormHelperText';
 import { StyledFormLabel } from '../../internal/StyledFormLabel';
@@ -15,11 +14,15 @@ import { StyledAsterisk } from '../../internal/StyledFormLabelAsterisk';
 
 type StyleProps = {
   size?: 'sm' | 'md';
+  row?: boolean;
 };
 
 type BaseProps = {
+  children?: React.ReactNode;
   className?: string;
   inputRef?: React.Ref<any>;
+  checked?: boolean;
+  defaultChecked?: boolean;
   label?: string;
   errorMessage?: string;
   helperText?: string;
@@ -28,56 +31,44 @@ type BaseProps = {
 
 type Props = BaseProps & StyleProps;
 
-const formInputClasses = {
-  root: 'Rui-FormInput-root',
-  label: 'Rui-FormInput-label',
-  asterisk: 'Rui-FormInput-asterisk',
-  input: 'Rui-FormInput-input',
-  helperText: 'Rui-FormInput-helperText',
-  errorMessage: 'Rui-FormInput-errorMessage',
+const formGroupClasses = {
+  root: 'Rui-FormGroup-root',
+  label: 'Rui-FormGroup-label',
+  asterisk: 'Rui-FormGroup-asterisk',
+  input: 'Rui-FormGroup-input',
+  helperText: 'Rui-FormGroup-helperText',
+  errorMessage: 'Rui-FormGroup-errorMessage',
 };
 
-const StyledFormInput = styled(InputUnstyled)<Required<StyleProps>>(({ theme, size }) => ({
-  outline: 'none',
-  font: 'inherit',
-  letterSpacing: 'inherit',
-  color: 'currentColor',
-  boxSizing: 'content-box',
-  background: 'none',
-  height: '1.4375em',
-  margin: 0,
-  WebkitTapHighlightColor: 'transparent',
-  display: 'block',
-  minWidth: 0,
-  border: `1px solid ${theme.palette.divider}`,
-  '&:focus': {
-    outline: `solid ${theme.palette.primary.main}`,
-  },
-  ...(size === 'sm' && {
-    padding: '4px 0',
-    textIndent: 14,
+const StyledFormGroup = styled('div')<Required<Pick<StyleProps, 'row'>>>(({ row }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  flexWrap: 'wrap',
+  ...(row && {
+    flexDirection: 'row',
   }),
 }));
 
-export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const FormGroup = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
+    children,
     className,
-    inputRef,
     label,
     errorMessage,
     helperText,
-    size = 'md',
     disabled = false,
     required = false,
     onChange,
     defaultValue,
     value,
     id,
+    size = 'md',
+    row = false,
   } = props;
 
   return (
     <FormControlUnstyled
-      className={cx(formInputClasses.root, className)}
+      className={cx(formGroupClasses.root, className)}
       ref={ref}
       disabled={disabled}
       required={required}
@@ -88,27 +79,20 @@ export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
       {(props: FormControlUnstyledState) => (
         <>
           {label && (
-            <StyledFormLabel className={formInputClasses.root} {...(id && { htmlFor: id })}>
+            <StyledFormLabel className={formGroupClasses.root} {...(id && { htmlFor: id })}>
               {label}
               {required && (
-                <StyledAsterisk className={formInputClasses.asterisk}>&thinsp;*</StyledAsterisk>
+                <StyledAsterisk className={clsx(formGroupClasses.asterisk)}>
+                  &thinsp;*
+                </StyledAsterisk>
               )}
             </StyledFormLabel>
           )}
-          <StyledFormInput
-            className={formInputClasses.input}
-            size={size}
-            ref={inputRef}
-            disabled={props.disabled}
-            required={props.required}
-            onChange={props.onChange}
-            value={props.value}
-            id={id}
-          />
+          <StyledFormGroup row={row}>{children}</StyledFormGroup>
           {helperText && (
             <StyledFormHelperText
               className={cx(
-                formInputClasses.helperText,
+                formGroupClasses.helperText,
                 disabled && formControlUnstyledClasses.disabled,
               )}
               size={size}
@@ -118,7 +102,7 @@ export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
           )}
           {errorMessage && (
             <StyledFormHelperText
-              className={cx(formInputClasses.errorMessage, formControlUnstyledClasses.error)}
+              className={cx(formGroupClasses.errorMessage, formControlUnstyledClasses.error)}
               size={size}
             >
               {errorMessage}
