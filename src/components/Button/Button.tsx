@@ -18,7 +18,7 @@ type BaseProps = {
   className?: string;
 };
 
-type Props<TElementType extends React.ElementType = 'li'> = OverrideStyleProps<
+export type Props<TElementType extends React.ElementType = 'li'> = OverrideStyleProps<
   StyleProps,
   TElementType
 > &

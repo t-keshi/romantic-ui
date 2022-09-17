@@ -1,8 +1,17 @@
 import { cx } from '@emotion/css';
-import { InputUnstyled } from '@mui/base';
+import {
+  FormControlUnstyled,
+  formControlUnstyledClasses,
+  FormControlUnstyledProps,
+  FormControlUnstyledState,
+  InputUnstyled,
+} from '@mui/base';
 import clsx from 'clsx';
-import { forwardRef, useRef } from 'react';
+import { forwardRef } from 'react';
 import { styled } from '../../theme';
+import { StyledFormHelperText } from '../internal/StyledFormHelperText';
+import { StyledFormLabel } from '../internal/StyledFormLabel';
+import { StyledAsterisk } from '../internal/StyledFormLabelAsterisk';
 
 type StyleProps = {
   size?: 'sm' | 'md';
@@ -10,14 +19,21 @@ type StyleProps = {
 
 type BaseProps = {
   className?: string;
-  errorMessage?: string;
   inputRef?: React.Ref<any>;
-} & JSX.IntrinsicElements['div'];
+  label?: string;
+  errorMessage?: string;
+  helperText?: string;
+  id?: JSX.IntrinsicElements['input']['id'];
+} & Omit<FormControlUnstyledProps, 'error'>;
 
 type Props = BaseProps & StyleProps;
 
 const formInputClasses = {
   root: 'Rui-FormInput-root',
+  label: 'Rui-FormInput-label',
+  asterisk: 'Rui-FormInput-asterisk',
+  input: 'Rui-FormInput-input',
+  helperText: 'Rui-FormInput-helperText',
   errorMessage: 'Rui-FormInput-errorMessage',
 };
 
@@ -44,17 +60,73 @@ const StyledFormInput = styled(InputUnstyled)<Required<StyleProps>>(({ theme, si
 }));
 
 export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { className, inputRef, errorMessage, size = 'md', ...rest } = props;
+  const {
+    className,
+    inputRef,
+    label,
+    errorMessage,
+    helperText,
+    size = 'md',
+    disabled = false,
+    required = false,
+    onChange,
+    defaultValue,
+    value,
+    id,
+  } = props;
 
   return (
-    <div ref={ref}>
-      <StyledFormInput
-        className={cx(formInputClasses.root, className)}
-        size={size}
-        {...rest}
-        ref={inputRef}
-      />
-      {errorMessage && <p className={formInputClasses.errorMessage}>{errorMessage}</p>}
-    </div>
+    <FormControlUnstyled
+      ref={ref}
+      disabled={disabled}
+      required={required}
+      onChange={onChange}
+      defaultValue={defaultValue}
+      value={value}
+    >
+      {(props: FormControlUnstyledState) => (
+        <>
+          {label && (
+            <StyledFormLabel className={formInputClasses.root} {...(id && { htmlFor: id })}>
+              {label}
+              {required && (
+                <StyledAsterisk className={clsx(formInputClasses.asterisk)}>
+                  &thinsp;*
+                </StyledAsterisk>
+              )}
+            </StyledFormLabel>
+          )}
+          <StyledFormInput
+            className={cx(formInputClasses.root, className)}
+            size={size}
+            ref={inputRef}
+            disabled={props.disabled}
+            required={props.required}
+            onChange={props.onChange}
+            value={props.value}
+            id={id}
+          />
+          {helperText && (
+            <StyledFormHelperText
+              className={cx(
+                formInputClasses.helperText,
+                disabled && formControlUnstyledClasses.disabled,
+              )}
+              size={size}
+            >
+              {helperText}
+            </StyledFormHelperText>
+          )}
+          {errorMessage && (
+            <StyledFormHelperText
+              className={cx(formInputClasses.errorMessage, formControlUnstyledClasses.error)}
+              size={size}
+            >
+              {errorMessage}
+            </StyledFormHelperText>
+          )}
+        </>
+      )}
+    </FormControlUnstyled>
   );
 });

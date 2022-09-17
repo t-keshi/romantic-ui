@@ -3,16 +3,16 @@ import { styled, Theme } from '../../theme';
 import { cx } from '@emotion/css';
 
 type StyleProps = {
-  maxWidth?: keyof Theme['breakpoints'] | false;
+  maxWidth?: keyof Theme['breakpoints']['values'] | false;
   disablePadding?: boolean;
 };
 
 type BaseProps = {
   children: React.ReactNode;
   className?: string;
-} & JSX.IntrinsicElements['div'];
+};
 
-type Props = StyleProps & BaseProps;
+export type Props = StyleProps & BaseProps;
 
 export const StyledContainer = styled('div')<Required<StyleProps>>(
   ({ theme, maxWidth, disablePadding }) => ({
@@ -22,7 +22,7 @@ export const StyledContainer = styled('div')<Required<StyleProps>>(
     marginRight: 'auto',
     display: 'block',
     ...(!disablePadding && { paddingLeft: theme.spacing(3), paddingRight: theme.spacing(3) }),
-    maxWidth: maxWidth ? `${theme.breakpoints[maxWidth]}px` : 'auto',
+    maxWidth: maxWidth ? `${theme.breakpoints.values[maxWidth]}px` : 'auto',
   }),
 );
 

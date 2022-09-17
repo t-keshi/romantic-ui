@@ -35,11 +35,11 @@ export const Dialog = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <StyledModal
-      ref={ref}
       className={cx(modalClasses.root, className)}
       components={{ Backdrop }}
-      open={false}
+      open={open}
       {...rest}
+      ref={ref}
     >
       {children}
     </StyledModal>

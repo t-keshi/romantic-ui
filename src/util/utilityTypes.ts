@@ -45,3 +45,5 @@ export type OverrideComponent<
 }>;
 
 export type Size = 'sm' | 'md' | 'lg';
+
+export type Classes<TKey extends string> = { [P in TKey]?: string };
