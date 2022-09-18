@@ -5,6 +5,7 @@ import {
   FormControlUnstyledProps,
   FormControlUnstyledState,
   InputUnstyled,
+  inputUnstyledClasses,
 } from '@mui/base';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
@@ -15,6 +16,7 @@ import { StyledAsterisk } from '../../internal/StyledFormLabelAsterisk';
 
 type StyleProps = {
   size?: 'sm' | 'md';
+  fullWidth?: boolean;
 };
 
 type BaseProps = {
@@ -37,53 +39,57 @@ const formInputClasses = {
   errorMessage: 'Rui-FormInput-errorMessage',
 };
 
-const StyledFormInput = styled(InputUnstyled)<Required<StyleProps>>(({ theme, size }) => ({
-  outline: 'none',
-  font: 'inherit',
-  letterSpacing: 'inherit',
-  color: 'currentColor',
-  boxSizing: 'content-box',
-  background: 'none',
-  height: '1.4375em',
-  margin: 0,
-  WebkitTapHighlightColor: 'transparent',
-  display: 'block',
-  minWidth: 0,
-  border: `1px solid ${theme.palette.divider}`,
-  '&:focus': {
-    outline: `solid ${theme.palette.primary.main}`,
-  },
-  ...(size === 'sm' && {
-    padding: '4px 0',
-    textIndent: 14,
+const StyledFormInput = styled(InputUnstyled)<Required<StyleProps>>(
+  ({ theme, size, fullWidth }) => ({
+    [`.${inputUnstyledClasses.input}`]: {
+      outline: 'none',
+      width: fullWidth ? '100%' : 320,
+      fontSize: '0.875rem',
+      fontWeight: 400,
+      lineHeight: 1.5,
+      color: theme.palette.text.primary,
+      background: theme.palette.background.paper,
+      border: `1px solid ${theme.palette.divider}`,
+      borderRadius: theme.shape.borderRadius,
+      padding: 12,
+      '&:focus': {
+        outline: theme.palette.primary.main,
+      },
+      ...(size === 'sm' && {
+        padding: '4px 0',
+        textIndent: 14,
+      }),
+    },
   }),
-}));
+);
 
 export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     className,
     inputRef,
     label,
+    id,
     errorMessage,
     helperText,
-    size = 'md',
-    disabled = false,
-    required = false,
-    onChange,
-    defaultValue,
     value,
-    id,
+    defaultValue,
+    onChange,
+    required = false,
+    disabled = false,
+    size = 'md',
+    fullWidth = false,
   } = props;
 
   return (
     <FormControlUnstyled
       className={cx(formInputClasses.root, className)}
       ref={ref}
-      disabled={disabled}
-      required={required}
-      onChange={onChange}
-      defaultValue={defaultValue}
       value={value}
+      defaultValue={defaultValue}
+      onChange={onChange}
+      required={required}
+      disabled={disabled}
+      error={Boolean(errorMessage)}
     >
       {(props: FormControlUnstyledState) => (
         <>
@@ -97,13 +103,11 @@ export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
           )}
           <StyledFormInput
             className={formInputClasses.input}
-            size={size}
             ref={inputRef}
-            disabled={props.disabled}
-            required={props.required}
-            onChange={props.onChange}
-            value={props.value}
             id={id}
+            size={size}
+            fullWidth={fullWidth}
+            {...props}
           />
           {helperText && (
             <StyledFormHelperText

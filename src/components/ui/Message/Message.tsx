@@ -24,8 +24,9 @@ const messageClasses = {
 const StyledMessage = styled('div')<{ color: string }>(({ theme, color }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(color, 0.6),
+  backgroundColor: alpha(color, 0.1),
   border: `1px solid ${alpha(color, 0.8)}`,
+  padding: theme.spacing(1, 2),
 }));
 
 const StyledMessageHeader = styled('h3')<{ color: string }>(({ theme, color }) => ({
@@ -34,7 +35,7 @@ const StyledMessageHeader = styled('h3')<{ color: string }>(({ theme, color }) =
 }));
 
 const StyledMessageContent = styled('p')<{ color: string }>(({ theme, color }) => ({
-  ...theme.typography.h3,
+  ...theme.typography.body1,
   color: alpha(color, 0.8),
 }));
 
@@ -59,7 +60,7 @@ export const Message = forwardRef<HTMLDivElement, Props>((props, ref) => {
       ref={ref}
     >
       {header && <StyledMessageHeader color={themeColor}>{header}</StyledMessageHeader>}
-      {content && <StyledMessageContent color={themeColor}>{header}</StyledMessageContent>}
+      {content && <StyledMessageContent color={themeColor}>{content}</StyledMessageContent>}
     </StyledMessage>
   );
 });

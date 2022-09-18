@@ -4,11 +4,10 @@ import { forwardRef } from 'react';
 import { styled } from '../../../theme';
 
 type StyleProps = {
-  color: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info';
+  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info';
 };
 
 type BaseProps = {
-  children: React.ReactNode;
   className?: string;
 };
 
@@ -77,12 +76,13 @@ const StyledLoaderCircle = styled('circle')(
 );
 
 export const Loader = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, color = 'primary', ...rest } = props;
 
   return (
     <StyledLoaderRoot
       className={cx(loaderClasses.root, className)}
       role="progressbar"
+      color={color}
       {...rest}
       ref={ref}
     >

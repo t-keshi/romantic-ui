@@ -11,7 +11,7 @@ type StyleProps = {
 type BaseProps = {
   children?: React.ReactNode;
   className?: string;
-} & ModalUnstyledProps;
+} & JSX.IntrinsicElements['div'];
 
 type Props = StyleProps & BaseProps;
 

@@ -34,7 +34,7 @@ const StyledModal = styled(ModalUnstyled)<Required<Pick<StyleProps, 'open'>>>(
     bottom: 0,
     top: 0,
     left: 0,
-    ...(open && { visibility: 'hidden' }),
+    ...(!open && { visibility: 'hidden' }),
   }),
 );
 
@@ -46,7 +46,7 @@ const StyledBackdrop = styled('div')<Required<StyleProps>>(({ theme }) => ({
   left: 0,
   WebkitTapHighlightColor: 'transparent',
   zIndex: -100,
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  background: 'rgba(0, 0, 0, 0.85)',
 }));
 
 const StyledCloseIcon = styled('button')(({ theme }) => ({
@@ -63,10 +63,11 @@ const StyledCloseIcon = styled('button')(({ theme }) => ({
   right: '-2.5rem',
   zIndex: 1,
   opacity: 0.8,
-  fontSize: '1.25em',
   color: '#fff',
-  width: '2.25rem',
-  height: '2.25rem',
+  '& > svg': {
+    fontSize: theme.typography.h3.fontSize,
+    fontWeight: theme.typography.h3.fontWeight,
+  },
 }));
 
 const StyledDialogContainer = styled('div')(({ theme }) => ({
@@ -84,15 +85,17 @@ const StyledDialogPaper = styled('div')<{ maxWidth: 'sm' | 'lg' | 'md' | false }
   ({ theme, maxWidth }) => ({
     margin: 32,
     position: 'relative',
-    overflowY: 'auto',
     '@media print': {
       overflowY: 'visible',
       boxShadow: 'none',
     },
     display: 'flex',
     flexDirection: 'column',
-    maxHeight: 'calc(100% - 64px)',
+    maxHeight: 'calc(100% - 80px)',
     maxWidth: maxWidth ? `${theme.breakpoints.values[maxWidth]}px` : 'calc(100% - 64px)',
+    background: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    width: 'calc(100% - 80px)',
   }),
 );
 
@@ -116,14 +119,16 @@ export const Dialog = forwardRef<HTMLDivElement, Props>((props, ref) => {
       ref={ref}
     >
       <Fade in={open}>
-        <StyledDialogContainer className={dialogClasses.container}>
-          <StyledDialogPaper className={dialogClasses.paper} maxWidth={maxWidth}>
-            <StyledCloseIcon onClick={(e) => onClose(e, 'backdropClick')}>
-              <MdClose />
-            </StyledCloseIcon>
-            {children}
-          </StyledDialogPaper>
-        </StyledDialogContainer>
+        <>
+          <StyledDialogContainer className={dialogClasses.container}>
+            <StyledDialogPaper className={dialogClasses.paper} maxWidth={maxWidth}>
+              <StyledCloseIcon onClick={(e) => onClose(e, 'backdropClick')}>
+                <MdClose />
+              </StyledCloseIcon>
+              {children}
+            </StyledDialogPaper>
+          </StyledDialogContainer>
+        </>
       </Fade>
     </StyledModal>
   );

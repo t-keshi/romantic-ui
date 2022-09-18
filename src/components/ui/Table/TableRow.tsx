@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../../theme';
-import { alpha } from '@mui/system';
+import { alpha, lighten } from '@mui/system';
 
 type StyleProps = {};
 

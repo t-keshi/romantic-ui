@@ -27,6 +27,7 @@ const StyledPaper = styled('div')<Required<StyleProps>>(
     transition: createTransition(['box-shadow']),
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[elevation],
+    padding: theme.spacing(1, 2),
     ...(outlined && {
       border: `1px solid ${theme.palette.divider}`,
     }),

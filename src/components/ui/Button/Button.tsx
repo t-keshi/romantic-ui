@@ -34,6 +34,7 @@ const StyledButton = styled(ButtonUnstyled)<
   Required<Pick<StyleProps, 'variant' | 'color' | 'size'>>
 >(({ theme, variant, color, size }) => ({
   ...theme.typography.button,
+  minWidth: 112,
   padding: '6px 16px',
   display: 'inline-flex',
   justifyContent: 'center',
@@ -51,15 +52,11 @@ const StyledButton = styled(ButtonUnstyled)<
   }),
   '&:active': {
     ...(variant === 'contained' && {
-      boxShadow: theme.shadows[8],
-    }),
-  },
-  [`&.${buttonUnstyledClasses.focusVisible}`]: {
-    ...(variant === 'contained' && {
-      boxShadow: theme.shadows[6],
+      boxShadow: theme.shadows[1],
     }),
   },
   [`&.${buttonUnstyledClasses.disabled}`]: {
+    cursor: 'not-allowed',
     color: theme.palette.action.disabled,
     ...(variant === 'outlined' && {
       border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -138,7 +135,7 @@ const StyledButton = styled(ButtonUnstyled)<
   ...(variant === 'text' &&
     size === 'lg' && {
       padding: '8px 11px',
-      fontSize: '15px',
+      fontSize: '18px',
     }),
   ...(variant === 'outlined' &&
     size === 'sm' && {
@@ -148,7 +145,7 @@ const StyledButton = styled(ButtonUnstyled)<
   ...(variant === 'outlined' &&
     size === 'lg' && {
       padding: '7px 21px',
-      fontSize: '15px',
+      fontSize: '18px',
     }),
   ...(variant === 'contained' &&
     size === 'sm' && {
@@ -158,7 +155,17 @@ const StyledButton = styled(ButtonUnstyled)<
   ...(variant === 'contained' &&
     size === 'lg' && {
       padding: '8px 22px',
-      fontSize: 15,
+      fontSize: '18px',
+    }),
+  ...(variant === 'disabled' &&
+    size === 'sm' && {
+      padding: '4px 10px',
+      fontSize: '13px',
+    }),
+  ...(variant === 'disabled' &&
+    size === 'lg' && {
+      padding: '8px 22px',
+      fontSize: '18px',
     }),
 }));
 
@@ -235,14 +242,20 @@ export const renderFunction = <TElementType extends React.ElementType = 'button'
   const restProps = {
     ...rest,
     ...(as === 'button' && { type: type as JSX.IntrinsicElements['button']['type'] }),
+    ...(variant === 'disabled' && { disabled: true }),
   };
 
   return (
     <ButtonElement
-      className={cx(buttonClasses.root, className)}
+      className={cx(
+        buttonClasses.root,
+        variant === 'disabled' && buttonUnstyledClasses.disabled,
+        className,
+      )}
       variant={variant}
       color={color}
       size={size}
+      disabled={variant === 'disabled'}
       {...restProps}
       ref={ref}
     >

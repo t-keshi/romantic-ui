@@ -1,3 +1,4 @@
+import { Box } from '@mui/system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Container, Props } from './Container';
 
@@ -12,4 +13,5 @@ export const Base = Template.bind({});
 
 Base.args = {
   maxWidth: 'sm',
+  children: <Box bgcolor="red" height={200} />,
 };

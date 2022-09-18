@@ -9,7 +9,7 @@ type StyleProps = {
 type BaseProps = {
   children?: React.ReactNode;
   className?: string;
-} & JSX.IntrinsicElements['div'];
+} & JSX.IntrinsicElements['button'];
 
 type Props = StyleProps & BaseProps;
 
@@ -17,37 +17,40 @@ const listItemButtonClasses = {
   root: 'Rui-ListItemButton-root',
 };
 
-export const StyledListItemButton = styled('div')<Required<StyleProps>>(
-  ({ theme, hasDivider }) => ({
-    ...theme.typography.body1,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    position: 'relative',
+const StyledListItemButton = styled('button')<Required<StyleProps>>(({ theme, hasDivider }) => ({
+  ...theme.typography.body1,
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  position: 'relative',
+  textDecoration: 'none',
+  paddingTop: 6,
+  paddingBottom: 6,
+  boxSizing: 'border-box',
+  whiteSpace: 'nowrap',
+  cursor: 'pointer',
+  paddingLeft: 16,
+  paddingRight: 16,
+  '&:hover': {
     textDecoration: 'none',
-    paddingTop: 6,
-    paddingBottom: 6,
-    boxSizing: 'border-box',
-    whiteSpace: 'nowrap',
-    cursor: 'pointer',
-    paddingLeft: 16,
-    paddingRight: 16,
-    '&:hover': {
-      textDecoration: 'none',
-    },
-    ...(hasDivider && {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      backgroundClip: 'padding-box',
-    }),
+  },
+  ...(hasDivider && {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundClip: 'padding-box',
   }),
-);
+}));
 
-export const ListItemButton = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { className, children, hasDivider, ...rest } = props;
+export const ListItemButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+  const { className, children, hasDivider = false, ...rest } = props;
 
   return (
-    <div className={cx(listItemButtonClasses.root, className)} {...rest} ref={ref}>
+    <StyledListItemButton
+      className={cx(listItemButtonClasses.root, className)}
+      hasDivider={hasDivider}
+      {...rest}
+      ref={ref}
+    >
       {children}
-    </div>
+    </StyledListItemButton>
   );
 });

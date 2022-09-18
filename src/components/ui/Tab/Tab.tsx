@@ -4,8 +4,8 @@ import { forwardRef } from 'react';
 import { styled } from '../../../theme';
 
 type StyleProps = {
-  textColor: string;
-  fullWidth: boolean;
+  textColor?: string;
+  fullWidth?: boolean;
 };
 
 type BaseProps = {
@@ -13,8 +13,6 @@ type BaseProps = {
   className?: string;
   disabled?: boolean;
   selected?: boolean;
-  startIcon: React.ReactNode;
-  endIcon: React.ReactNode;
 } & (
   | {
       startIcon: React.ReactNode;

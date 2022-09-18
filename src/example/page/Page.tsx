@@ -1,10 +1,9 @@
 import React from 'react';
-
-import { Typography } from '../../components/Typography/Typography';
+import { Typography } from '../../components';
 import { css } from '@emotion/css';
 import { theme } from '../../theme';
 import { Layout } from '../layout/Layout';
-import { SvgIcon } from '../../components/SvgIcon/SvgIcon';
+import { SvgIcon } from '../../components';
 import { AttachmentPin } from '../../components/icons';
 
 const logo = css`

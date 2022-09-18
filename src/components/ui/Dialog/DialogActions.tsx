@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../../theme';
-import { Typography } from '../Typography/Typography';
 
 type StyleProps = {
   hasDivider?: boolean;
@@ -10,7 +9,7 @@ type StyleProps = {
 type BaseProps = {
   children?: React.ReactNode;
   className?: string;
-};
+} & JSX.IntrinsicElements['div'];
 
 type Props = StyleProps & BaseProps;
 
@@ -18,7 +17,7 @@ export const dialogActionsClasses = {
   root: 'Rui-DialogActions-root',
 };
 
-const StyledDialogActions = styled(Typography)(() => ({
+const StyledDialogActions = styled('div')(() => ({
   display: 'flex',
   alignItems: 'center',
   padding: 8,

@@ -1,6 +1,6 @@
 import { RuiThemeProvider } from './theme';
 import { Page } from './example/page/Page';
-import { Button, Dialog } from './components/ui';
+import { Button, Dialog } from './components';
 
 export const App: React.FC = () => {
   return (

@@ -8,7 +8,7 @@ const lightModePalette = {
   },
   divider: 'rgba(0, 0, 0, 0.12)',
   background: {
-    default: '#edf2f6',
+    default: '#f9fafb',
     paper: '#ffffff',
   },
   action: {

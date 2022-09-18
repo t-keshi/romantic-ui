@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../../theme';
+import { alpha, lighten } from '@mui/system';
 
 type StyleProps = {};
 
@@ -11,8 +12,8 @@ type BaseProps = {
 
 type Props = StyleProps & BaseProps;
 
-const StyledTableHead = styled('thead')<Required<StyleProps>>(() => ({
-  display: 'table-row-group',
+const StyledTableHead = styled('thead')<Required<StyleProps>>(({ theme }) => ({
+  display: 'table-header-group',
 }));
 
 const tableCellClasses = {
@@ -23,7 +24,7 @@ export const TableHead = forwardRef<HTMLTableSectionElement, Props>((props, ref)
   const { children, className, ...rest } = props;
 
   return (
-    <StyledTableHead ref={ref} className={cx(tableCellClasses.root, className)} {...rest}>
+    <StyledTableHead className={cx(tableCellClasses.root, className)} {...rest} ref={ref}>
       {children}
     </StyledTableHead>
   );

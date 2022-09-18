@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../../theme';
 import { ModalUnstyled, ModalUnstyledProps } from '@mui/base';
+import { alpha, lighten } from '@mui/system';
 
 type StyleProps = {};
 

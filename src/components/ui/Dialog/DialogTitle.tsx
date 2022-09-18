@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import { cx } from '@emotion/css';
 import { styled } from '../../../theme';
-import { Typography } from '../Typography/Typography';
 
 type StyleProps = {
   hasDivider?: boolean;
@@ -18,7 +17,8 @@ export const dialogTitleClasses = {
   root: 'Rui-DialogTItle-root',
 };
 
-const StyledDialogTitle = styled(Typography)(({ theme }) => ({
+const StyledDialogTitle = styled('h2')(({ theme }) => ({
+  ...theme.typography.h3,
   padding: '16px 24px',
   flex: '0 0 auto',
 }));

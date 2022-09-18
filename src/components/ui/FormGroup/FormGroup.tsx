@@ -70,11 +70,12 @@ export const FormGroup = forwardRef<HTMLDivElement, Props>((props, ref) => {
     <FormControlUnstyled
       className={cx(formGroupClasses.root, className)}
       ref={ref}
-      disabled={disabled}
-      required={required}
-      onChange={onChange}
-      defaultValue={defaultValue}
       value={value}
+      defaultValue={defaultValue}
+      onChange={onChange}
+      required={required}
+      disabled={disabled}
+      error={Boolean(errorMessage)}
     >
       {(props: FormControlUnstyledState) => (
         <>

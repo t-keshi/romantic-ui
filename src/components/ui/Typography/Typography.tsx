@@ -23,14 +23,7 @@ const typogrqphyClasses = {
 };
 
 const StyledTypography = styled('p')<Required<StyleProps>>(({ theme, variant }) => ({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-  borderRadius: '50%',
-  overflow: 'hidden',
-  userSelect: 'none',
+  margin: 0,
   ...theme.typography[variant],
 }));
 
