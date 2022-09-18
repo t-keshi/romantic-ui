@@ -1,5 +1,3 @@
-import { Theme } from '@mui/system';
-
 export const zIndexTheme = {
   zIndex: {
     mobileStepper: 1000,

@@ -13,7 +13,7 @@ type BaseProps = {
 
 type Props = StyleProps & BaseProps;
 
-const listItemClasses = {
+export const listItemIconClasses = {
   root: 'Rui-ListItemIcon-root',
 };
 
@@ -29,7 +29,7 @@ export const ListItemIcon = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <StyledListItemIcon
-      className={clsx(listItemClasses.root, className)}
+      className={clsx(listItemIconClasses.root, className)}
       size={size}
       {...rest}
       ref={ref}

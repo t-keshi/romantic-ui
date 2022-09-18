@@ -24,6 +24,8 @@ const StyledList = styled('span')<Required<StyleProps>>(() => ({
   listStyle: 'none',
   margin: 0,
   position: 'relative',
+  paddingTop: 8,
+  paddingBottom: 8,
 }));
 
 export const renderFunction = <TElementType extends React.ElementType = 'ul'>(

@@ -3,7 +3,9 @@ import { forwardRef } from 'react';
 import { styled } from '../../../theme';
 import { Typography } from '../Typography/Typography';
 
-type StyleProps = {};
+type StyleProps = {
+  inset?: boolean;
+};
 
 type BaseProps = {
   children: React.ReactNode;
@@ -12,28 +14,37 @@ type BaseProps = {
 
 type Props = StyleProps & BaseProps;
 
-const listItemTextClasses = {
+export const listItemTextClasses = {
   root: 'Rui-ListItemText-root',
+  inset: 'Rui-ListItemText-inset',
   typography: 'Rui-ListItemText-typography',
 };
 
-const StyledListItem = styled('div')<Required<StyleProps>>(() => ({
+const StyledListItemTextRoot = styled('div')<Required<StyleProps>>(({ inset }) => ({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
+  ...(inset && {
+    paddingLeft: 56,
+  }),
 }));
 
-const StyledListItemTypography = styled(Typography)<Required<StyleProps>>(() => ({
+const StyledListItemTypography = styled(Typography)(() => ({
   display: 'block',
 }));
 
 export const ListItemText = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, children, inset = false, ...rest } = props;
 
   return (
-    <StyledListItem ref={ref} className={cx(listItemTextClasses.root, className)} {...rest}>
+    <StyledListItemTextRoot
+      ref={ref}
+      className={cx(listItemTextClasses.root, className)}
+      inset={inset}
+      {...rest}
+    >
       <StyledListItemTypography variant="body1">{children}</StyledListItemTypography>
-    </StyledListItem>
+    </StyledListItemTextRoot>
   );
 });
