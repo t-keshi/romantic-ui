@@ -13,7 +13,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "icons": "npx @svgr/cli -d src/components/icons src/assets",
-    "chromatic": "chromatic --exit-zero-on-changes"
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "tokne:genJson": "./node_modules/.bin/token-transformer tokens.json output.json",
+    "token:genToken": "style-dictionary build --config style-dictionary.config.json",
+    "token": "run-s tokne:genJson token:genToken"
   },
   "dependencies": {
     "@emotion/css": "^11.10.0",
@@ -61,9 +64,12 @@
     "eslint-plugin-storybook": "^0.6.4",
     "html-webpack-plugin": "^5.5.0",
     "lint-staged": "~10.5.4",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.4.1",
     "prettier-stylelint": "^0.4.2",
     "simple-git-hooks": "^2.6.1",
+    "style-dictionary": "^3.7.1",
+    "token-transformer": "^0.0.27",
     "typescript": "^4.8.3",
     "vite": "^3.1.0"
   }

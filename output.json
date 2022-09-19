@@ -1,0 +1,18 @@
+{
+  "tokenSetOrder": {
+    "0": {
+      "value": "global",
+      "type": "other"
+    }
+  },
+  "Heading1": {
+    "value": 48,
+    "type": "sizing"
+  },
+  "default": {
+    "background": {
+      "value": "f9fafb",
+      "type": "color"
+    }
+  }
+}
