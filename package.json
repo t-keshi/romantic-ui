@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "icons": "npx @svgr/cli -d src/components/icons src/assets"
+    "icons": "npx @svgr/cli -d src/components/icons src/assets",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@emotion/css": "^11.10.0",
@@ -43,6 +44,7 @@
     "@types/react-transition-group": "^4.4.5",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.9.0",
     "eslint": "^8.23.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",

@@ -19,7 +19,7 @@ const dialogContentClasses = {
 
 const StyledDialogContentText = styled('p')<Required<StyleProps>>(({ theme }) => ({
   ...theme.typography.body1,
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.primary,
 }));
 
 export const DialogContentText = forwardRef<HTMLDivElement, Props>((props, ref) => {

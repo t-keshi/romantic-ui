@@ -11,9 +11,11 @@ type BaseProps = {
 
 type Props = StyleProps & BaseProps;
 
-const StyledTableContainer = styled('div')<Required<StyleProps>>(() => ({
+const StyledTableContainer = styled('div')<Required<StyleProps>>(({ theme }) => ({
   width: '100%',
   overflowX: 'auto',
+  borderRadius: theme.shape.borderRadius,
+  border: `1px solid ${theme.palette.divider}`,
 }));
 
 const tableContainerClasses = {

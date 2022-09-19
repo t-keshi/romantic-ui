@@ -1,5 +1,6 @@
 import { cx } from '@emotion/css';
 import { ButtonUnstyled, buttonUnstyledClasses } from '@mui/base';
+import { alpha, darken } from '@mui/system';
 import { forwardRef } from 'react';
 import { styled } from '../../../theme';
 import { createTransition } from '../../../util/createTransition';
@@ -47,9 +48,7 @@ const StyledButton = styled(ButtonUnstyled)<
   verticalAlign: 'middle',
   borderRadius: 6,
   backgroundColor: 'inherit',
-  transion: createTransition(['background-color', 'box-shadow', 'border-color', 'color'], {
-    duration: 'short',
-  }),
+  transition: createTransition(['background-color', 'box-shadow', 'border-color', 'color']),
   '&:active': {
     ...(variant === 'contained' && {
       boxShadow: theme.shadows[1],
@@ -91,7 +90,10 @@ const StyledButton = styled(ButtonUnstyled)<
       border: 'none',
       background: theme.palette.primary.main,
       ':hover': {
-        background: theme.palette.primary.dark,
+        backgroundColor: theme.palette.primary.dark,
+      },
+      ':active': {
+        backgroundColor: darken(theme.palette.primary.dark, theme.palette.action.focusOpacity),
       },
     }),
   ...(variant === 'contained' &&
@@ -100,7 +102,10 @@ const StyledButton = styled(ButtonUnstyled)<
       border: 'none',
       background: theme.palette.secondary.main,
       ':hover': {
-        background: theme.palette.secondary.dark,
+        backgroundColor: theme.palette.secondary.dark,
+      },
+      ':active': {
+        backgroundColor: darken(theme.palette.secondary.dark, 0.4),
       },
     }),
   ...(variant === 'outlined' &&
@@ -117,6 +122,9 @@ const StyledButton = styled(ButtonUnstyled)<
       ':hover': {
         background: theme.palette.action.hover,
       },
+      ':active': {
+        background: alpha(theme.palette.action.active, theme.palette.action.focusOpacity),
+      },
     }),
   ...(variant === 'outlined' &&
     color === 'secondary' && {
@@ -124,6 +132,9 @@ const StyledButton = styled(ButtonUnstyled)<
       border: `1px solid ${theme.palette.secondary.main}`,
       ':hover': {
         background: theme.palette.action.hover,
+      },
+      ':active': {
+        background: darken(theme.palette.action.hover, theme.palette.action.hoverOpacity),
       },
     }),
   // size

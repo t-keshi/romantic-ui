@@ -36,9 +36,7 @@ const StyledSvgIcon = styled('svg')<
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition: createTransition(['fill'], {
-    duration: 'shorter',
-  }),
+  transition: createTransition(['fill']),
   fontSize: {
     inherit: 'inherit',
     sm: 20,

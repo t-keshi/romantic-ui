@@ -1,7 +1,6 @@
 import { cx } from '@emotion/css';
 import { MenuItemUnstyled, MenuItemUnstyledProps } from '@mui/base';
 import { alpha } from '@mui/system';
-import clsx from 'clsx';
 import { forwardRef } from 'react';
 import { styled } from '../../../theme';
 import { dividerClasses } from '../Divider/Divider';
@@ -32,14 +31,16 @@ const menuItemClasses = {
 const StyledMenuItem = styled(MenuItemUnstyled)<Required<StyleProps>>(
   ({ theme, disableGutters, hasDivider, dense }) => ({
     ...theme.typography.body1,
+    cursor: 'pointer',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
     minHeight: 48,
-    paddingTop: 6,
-    paddingBottom: 6,
+    minWidth: 180,
+    paddingTop: 12,
+    paddingBottom: 12,
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
     ...(!disableGutters && {
@@ -53,7 +54,6 @@ const StyledMenuItem = styled(MenuItemUnstyled)<Required<StyleProps>>(
     '&:hover': {
       textDecoration: 'none',
       backgroundColor: theme.palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },

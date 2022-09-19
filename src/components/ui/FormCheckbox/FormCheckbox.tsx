@@ -42,7 +42,7 @@ const formCheckboxClasses = {
 
 const StyledFormCheckboxRoot = styled('span')<Required<StyleProps>>(({ theme }) => ({
   position: 'relative',
-  padding: 9,
+  padding: '0px 8px',
   borderRadius: '50%',
   display: 'inline-flex',
   alignItems: 'center',

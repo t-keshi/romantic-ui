@@ -21,22 +21,25 @@ const StyledListbox = styled('ul')<Required<StyleProps>>(({ theme }) => ({
   listStyle: 'none',
   margin: 0,
   position: 'relative',
-  paddingTop: 8,
-  paddingBottom: 8,
   outline: 0,
-  overflow: 'auto',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: theme.palette.background.paper,
-  boxShadow: theme.shadows[1],
+  boxShadow: theme.shadows[2],
+}));
+
+const Popper = styled(PopperUnstyled)(({ theme }) => ({
+  zIndex: theme.zIndex.appBar + 1,
 }));
 
 export const Menu = forwardRef<HTMLUListElement, Props>((props, ref) => {
-  const { children, className, anchorEl, ...rest } = props;
+  const { children, className, anchorEl, open = false, ...rest } = props;
 
   return (
     <MenuUnstyled
       className={cx(menuClasses.root, className)}
-      components={{ Listbox: StyledListbox }}
+      components={{ Root: Popper, Listbox: StyledListbox }}
+      anchorEl={anchorEl}
+      open={open}
       {...rest}
       ref={ref}
     >

@@ -20,11 +20,11 @@ export const dialogActionsClasses = {
 const StyledDialogActions = styled('div')(() => ({
   display: 'flex',
   alignItems: 'center',
-  padding: 8,
+  padding: 12,
   justifyContent: 'flex-end',
   flex: '0 0 auto',
   '& > :not(:first-of-type)': {
-    marginLeft: 8,
+    marginLeft: 12,
   },
 }));
 

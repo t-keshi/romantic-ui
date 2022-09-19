@@ -44,14 +44,14 @@ const StyledFormInput = styled(InputUnstyled)<Required<StyleProps>>(
     [`.${inputUnstyledClasses.input}`]: {
       outline: 'none',
       width: fullWidth ? '100%' : 320,
-      fontSize: '0.875rem',
+      fontSize: theme.typography.body2.fontSize,
+      lineHeight: theme.typography.body2.lineHeight,
       fontWeight: 400,
-      lineHeight: 1.5,
       color: theme.palette.text.primary,
       background: theme.palette.background.paper,
       border: `1px solid ${theme.palette.divider}`,
       borderRadius: theme.shape.borderRadius,
-      padding: 12,
+      padding: '6px 12px',
       '&:focus': {
         outline: theme.palette.primary.main,
       },

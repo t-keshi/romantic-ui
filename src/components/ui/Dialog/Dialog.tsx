@@ -15,7 +15,7 @@ type StyleProps = {
 type BaseProps = {
   children?: React.ReactNode;
   className?: string;
-} & ModalUnstyledProps;
+} & Omit<ModalUnstyledProps, 'children'>;
 
 type Props = StyleProps & BaseProps;
 
@@ -100,14 +100,7 @@ const StyledDialogPaper = styled('div')<{ maxWidth: 'sm' | 'lg' | 'md' | false }
 );
 
 export const Dialog = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {
-    children,
-    className,
-    open = false,
-    maxWidth = false,
-    onClose = () => {},
-    ...rest
-  } = props;
+  const { children, className, open = false, maxWidth = 'sm', onClose = () => {}, ...rest } = props;
 
   return (
     <StyledModal

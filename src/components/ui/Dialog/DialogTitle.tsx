@@ -18,8 +18,8 @@ export const dialogTitleClasses = {
 };
 
 const StyledDialogTitle = styled('h2')(({ theme }) => ({
-  ...theme.typography.h3,
-  padding: '16px 24px',
+  ...theme.typography.h4,
+  padding: '16px',
   flex: '0 0 auto',
 }));
 

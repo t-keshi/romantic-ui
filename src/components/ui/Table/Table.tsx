@@ -19,6 +19,7 @@ const StyledTable = styled('table')<Required<StyleProps>>(({ theme, stickyHeader
   display: 'table',
   width: '100%',
   borderCollapse: 'collapse',
+  borderRadius: theme.shape.borderRadius,
   borderSpacing: 0,
   '& caption': {
     ...theme.typography.body2,

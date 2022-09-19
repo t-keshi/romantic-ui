@@ -6,18 +6,23 @@ import {
   FormControlUnstyledProps,
   FormControlUnstyledState,
   MenuItemUnstyledProps,
+  MenuUnstyled,
+  OptionUnstyledProps,
   SelectOption,
   SelectUnstyled,
   useSelect,
 } from '@mui/base';
 import clsx from 'clsx';
-import { forwardRef, useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import { styled } from '../../../theme';
+import { isPropValid } from '../../../util/isPropValid';
+import { useAnchorEl } from '../../../util/useAnchorEl';
 import { useToggle } from '../../../util/useToggle';
 import { StyledFormHelperText } from '../../internal/StyledFormHelperText';
 import { StyledFormLabel } from '../../internal/StyledFormLabel';
 import { StyledAsterisk } from '../../internal/StyledFormLabelAsterisk';
 import { MenuItem } from '../Menu/MenuItem';
+import { Select } from '../Select/Select';
 
 type StyleProps = {
   size?: 'sm' | 'md';
@@ -30,7 +35,10 @@ type BaseProps = {
   errorMessage?: string;
   helperText?: string;
   id?: JSX.IntrinsicElements['input']['id'];
-  options?: { value: MenuItemUnstyledProps['value']; label: MenuItemUnstyledProps['label'] }[];
+  options?: {
+    value: OptionUnstyledProps<string | number, 'li'>['value'];
+    label: OptionUnstyledProps<string | number, 'li'>['label'];
+  }[];
   placeholder?: string;
 } & Omit<FormControlUnstyledProps, 'error'>;
 
@@ -45,43 +53,23 @@ const formSelectClasses = {
   errorMessage: 'Rui-FormSelect-errorMessage',
 };
 
-const StyledFormSelect = styled('ul')<Required<StyleProps>>(({ theme, size, fullWidth }) => ({
-  outline: 'none',
-  font: 'inherit',
-  letterSpacing: 'inherit',
-  color: 'currentColor',
-  boxSizing: 'content-box',
-  background: 'none',
-  margin: 0,
-  WebkitTapHighlightColor: 'transparent',
-  display: 'block',
-  minWidth: 0,
-  border: `1px solid ${theme.palette.divider}`,
-  width: fullWidth ? '100%' : 318,
-  '&:focus': {
-    outline: 'none',
-  },
-  ...(size === 'sm' && {
-    padding: '4px 0',
-    textIndent: 14,
-  }),
-}));
-
-const StyledFormSelectButton = styled(ButtonUnstyled)<Required<StyleProps>>(
+const StyledFormSelect = styled(MenuUnstyled)<Required<StyleProps>>(
   ({ theme, size, fullWidth }) => ({
-    display: 'inline-flex',
+    zIndex: 9999,
     outline: 'none',
-    width: fullWidth ? '100%' : 320,
-    fontSize: '0.875rem',
-    fontWeight: 400,
-    lineHeight: 1.5,
-    color: theme.palette.text.primary,
-    background: theme.palette.background.paper,
+    font: 'inherit',
+    letterSpacing: 'inherit',
+    color: 'currentColor',
+    boxSizing: 'content-box',
+    background: 'none',
+    margin: 0,
+    WebkitTapHighlightColor: 'transparent',
+    display: 'block',
+    minWidth: 0,
     border: `1px solid ${theme.palette.divider}`,
-    borderRadius: theme.shape.borderRadius,
-    padding: 12,
+    width: fullWidth ? '100%' : 318,
     '&:focus': {
-      outline: theme.palette.primary.main,
+      outline: 'none',
     },
     ...(size === 'sm' && {
       padding: '4px 0',
@@ -89,6 +77,41 @@ const StyledFormSelectButton = styled(ButtonUnstyled)<Required<StyleProps>>(
     }),
   }),
 );
+
+const StyledFormSelectButton = styled(ButtonUnstyled, {
+  shouldForwardProp: (prop) => isPropValid(prop),
+})<Required<StyleProps>>(({ theme, size, fullWidth }) => ({
+  display: 'inline-flex',
+  outline: 'none',
+  width: fullWidth ? '100%' : 320,
+  fontSize: '0.875rem',
+  fontWeight: 400,
+  lineHeight: 1.5,
+  color: theme.palette.text.primary,
+  background: theme.palette.background.paper,
+  border: `1px solid ${theme.palette.divider}`,
+  borderRadius: theme.shape.borderRadius,
+  padding: 12,
+  '&:focus': {
+    outline: theme.palette.primary.main,
+  },
+  ...(size === 'sm' && {
+    padding: '4px 0',
+    textIndent: 14,
+  }),
+}));
+
+const StyledListbox = styled('ul')(({ theme }) => ({
+  listStyle: 'none',
+  margin: 0,
+  position: 'relative',
+  paddingTop: 8,
+  paddingBottom: 8,
+  outline: 0,
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[2],
+}));
 
 export const FormSelect = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
@@ -109,13 +132,12 @@ export const FormSelect = forwardRef<HTMLDivElement, Props>((props, ref) => {
   } = props;
   const buttonRef = useRef<HTMLButtonElement>(null);
   const listboxRef = useRef<HTMLUListElement>(null);
-  const [open, toggleOpen] = useToggle(false);
+  const { anchorEl, onOpen, onClose, onToggle } = useAnchorEl();
   const { getButtonProps, getListboxProps, getOptionProps } = useSelect({
     buttonRef,
     listboxRef,
     options,
-    onOpenChange: toggleOpen,
-    open: open,
+    open: Boolean(anchorEl),
   });
 
   return (
@@ -138,23 +160,7 @@ export const FormSelect = forwardRef<HTMLDivElement, Props>((props, ref) => {
               )}
             </StyledFormLabel>
           )}
-          <StyledFormSelectButton size={size} fullWidth={fullWidth} {...getButtonProps()}>
-            {placeholder || '　'}
-          </StyledFormSelectButton>
-          {open && (
-            <StyledFormSelect size={size} fullWidth={fullWidth} {...getListboxProps()}>
-              {options.map((option) => {
-                if (typeof option.value === 'object') {
-                  return null;
-                }
-                return (
-                  <MenuItem key={option.value ?? ''} {...getOptionProps(option)}>
-                    {option.label}
-                  </MenuItem>
-                );
-              })}
-            </StyledFormSelect>
-          )}
+          <Select options={options} />
           {helperText && (
             <StyledFormHelperText
               className={cx(

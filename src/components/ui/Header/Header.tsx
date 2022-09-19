@@ -29,6 +29,7 @@ const StyledAppBar = styled('header')<Required<StyleProps>>(({ theme }) => ({
   left: 'auto',
   right: 0,
   borderBottom: `1px solid ${theme.palette.divider}`,
+  backgroundColor: theme.palette.background.paper,
 }));
 
 const StyledToolBar = styled('div')<Required<StyleProps>>(({ theme }) => ({

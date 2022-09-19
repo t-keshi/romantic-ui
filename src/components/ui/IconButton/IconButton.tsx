@@ -26,9 +26,7 @@ const StyledIconButton = styled('button')<StyleProps>(({ theme, active, size, ed
   alignItems: 'center',
   borderRadius: '50%',
   overflow: 'visible',
-  transition: createTransition(['background-color'], {
-    duration: 'shortest',
-  }),
+  transition: createTransition(['background-color']),
   cursor: 'pointer',
   lineHeight: 1,
   color: theme.palette.action.active,

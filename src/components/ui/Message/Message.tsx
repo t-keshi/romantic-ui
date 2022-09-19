@@ -4,13 +4,13 @@ import { forwardRef } from 'react';
 import { styled, useTheme } from '../../../theme';
 
 type StyleProps = {
-  color: 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success';
+  color?: 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success';
 };
 
 type BaseProps = {
   className?: string;
   header?: string;
-  content?: string;
+  content?: React.ReactNode;
 } & JSX.IntrinsicElements['div'];
 
 type Props = StyleProps & BaseProps;
@@ -26,16 +26,16 @@ const StyledMessage = styled('div')<{ color: string }>(({ theme, color }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(color, 0.1),
   border: `1px solid ${alpha(color, 0.8)}`,
-  padding: theme.spacing(1, 2),
+  padding: theme.spacing(2),
 }));
 
-const StyledMessageHeader = styled('h3')<{ color: string }>(({ theme, color }) => ({
-  ...theme.typography.h3,
+const StyledMessageHeader = styled('h6')<{ color: string }>(({ theme, color }) => ({
+  ...theme.typography.h6,
   color: alpha(color, 0.8),
 }));
 
 const StyledMessageContent = styled('p')<{ color: string }>(({ theme, color }) => ({
-  ...theme.typography.body1,
+  ...theme.typography.body2,
   color: alpha(color, 0.8),
 }));
 

@@ -23,7 +23,7 @@ const StyledDialogContent = styled('div')<Required<StyleProps>>(({ theme, hasDiv
   flex: '1 1 auto',
   WebkitOverflowScrolling: 'touch',
   overflowY: 'auto',
-  padding: hasDivider ? '16px 24px' : '20px 24px',
+  padding: hasDivider ? '12px 16px' : '20px 16px',
   ...(hasDivider
     ? {
         borderTop: `1px solid ${theme.palette.divider}`,

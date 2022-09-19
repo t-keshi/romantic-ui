@@ -4,9 +4,9 @@ import { forwardRef } from 'react';
 type StyleProps = {};
 
 type BaseProps = {
-  className: string;
+  className?: string;
   children?: React.ReactNode;
-  index: number;
+  index?: number;
   value: number;
 };
 

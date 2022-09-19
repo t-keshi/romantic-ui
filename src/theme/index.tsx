@@ -36,7 +36,7 @@ const CSSReset = () => {
         html {
           line-height: 1.5;
           -webkit-text-size-adjust: 100%;
-          font-family: system-ui, sans-serif;
+          font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
           -webkit-font-smoothing: antialiased;
           text-rendering: optimizeLegibility;
           -moz-osx-font-smoothing: grayscale;
