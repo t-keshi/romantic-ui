@@ -70,7 +70,7 @@ export const paletteTheme = {
       light: '#e5ffbb',
       main: '#2D3748',
       dark: '#051121',
-      contrastText: '#000000',
+      contrastText: '#ffffff',
     },
     success: {
       light: '#576173',

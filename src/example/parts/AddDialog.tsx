@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormCheckbox,
+  Checkbox,
   FormGroup,
   FormInput,
   FormSelect,
@@ -41,9 +41,9 @@ export const AddDialog: React.FC<Props> = ({ open, onClose }) => {
             <FormInput label="品目名" required fullWidth />
             <FormSelect label="栄養学的分類" required fullWidth options={options} />
             <FormGroup label="特徴" row>
-              <FormCheckbox label="低カロリー" />
-              <FormCheckbox label="低脂質" />
-              <FormCheckbox label="高タンパク" />
+              <Checkbox label="低カロリー" />
+              <Checkbox label="低脂質" />
+              <Checkbox label="高タンパク" />
             </FormGroup>
           </Stack>
         </form>

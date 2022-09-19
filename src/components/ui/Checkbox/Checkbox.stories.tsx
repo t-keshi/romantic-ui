@@ -1,15 +1,15 @@
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { FormRadio } from './FormRadio';
+import { Checkbox } from './Checkbox';
 import { Box } from '@mui/system';
 
 export default {
-  title: 'components/FormRadio',
-  component: FormRadio,
-} as ComponentMeta<typeof FormRadio>;
+  title: 'components/Checkbox',
+  component: Checkbox,
+} as ComponentMeta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof FormRadio> = (args) => <FormRadio {...args} />;
+const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} />;
 
 export const Base = Template.bind({});
 

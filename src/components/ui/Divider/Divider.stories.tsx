@@ -14,3 +14,10 @@ const Template: ComponentStory<typeof Divider> = (args) => <Divider {...args} />
 export const Base = Template.bind({});
 
 Base.args = {};
+
+export const WithText = Template.bind({});
+
+WithText.args = {
+  children: '⇦Before / After⇨',
+  orientation: 'vertical',
+};

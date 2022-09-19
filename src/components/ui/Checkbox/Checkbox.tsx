@@ -1,7 +1,7 @@
 import { cx } from '@emotion/css';
 import { useFormControlUnstyledContext, useSwitch, UseSwitchParameters } from '@mui/base';
 import { forwardRef } from 'react';
-import { MdOutlineRadioButtonChecked, MdOutlineRadioButtonUnchecked } from 'react-icons/md';
+import { MdOutlineCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
 import { styled } from '../../../theme';
 import { StyledFormLabel } from '../../internal/StyledFormLabel';
 import { StyledAsterisk } from '../../internal/StyledFormLabelAsterisk';
@@ -13,28 +13,26 @@ type StyleProps = {
 type BaseProps = {
   className?: string;
   inputRef?: React.Ref<any>;
-  checked?: boolean;
-  defaultChecked?: boolean;
+  id?: JSX.IntrinsicElements['input']['id'];
   label?: string;
   errorMessage?: string;
   helperText?: string;
-  id?: JSX.IntrinsicElements['input']['id'];
 } & UseSwitchParameters;
 
 type Props = BaseProps & StyleProps;
 
-const formRadioClasses = {
-  root: 'Rui-FormRadio-root',
-  label: 'Rui-FormRadio-label',
-  asterisk: 'Rui-FormRadio-asterisk',
-  input: 'Rui-FormRadio-input',
-  helperText: 'Rui-FormRadio-helperText',
-  errorMessage: 'Rui-FormRadio-errorMessage',
+const checkboxClasses = {
+  root: 'Rui-Checkbox-root',
+  label: 'Rui-Checkbox-label',
+  asterisk: 'Rui-Checkbox-asterisk',
+  input: 'Rui-Checkbox-input',
+  helperText: 'Rui-Checkbox-helperText',
+  errorMessage: 'Rui-Checkbox-errorMessage',
 };
 
-const StyledFormRadioRoot = styled('span')<Required<StyleProps>>(({ theme }) => ({
+const StyledCheckboxRoot = styled('span')<Required<StyleProps>>(({ theme }) => ({
   position: 'relative',
-  padding: 9,
+  padding: '0px 8px',
   borderRadius: '50%',
   display: 'inline-flex',
   alignItems: 'center',
@@ -45,7 +43,7 @@ const StyledFormRadioRoot = styled('span')<Required<StyleProps>>(({ theme }) => 
   },
 }));
 
-const StyledFormRadioInput = styled('input')(() => ({
+const StyledCheckboxInput = styled('input')(({ theme }) => ({
   position: 'absolute',
   opacity: 0,
   width: '100%',
@@ -58,13 +56,13 @@ const StyledFormRadioInput = styled('input')(() => ({
   cursor: 'pointer',
 }));
 
-const StyledFormRadioLabel = styled(StyledFormLabel)(({ theme }) => ({
+const StyledCheckboxLabel = styled(StyledFormLabel)(({ theme }) => ({
   marginBottom: 0,
   marginLeft: theme.spacing(1),
   lineHeight: '38px',
 }));
 
-export const FormRadio = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const Checkbox = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const formControl = useFormControlUnstyledContext();
   const {
     className,
@@ -92,23 +90,23 @@ export const FormRadio = forwardRef<HTMLDivElement, Props>((props, ref) => {
   });
 
   return (
-    <StyledFormRadioRoot className={cx(formRadioClasses.root, className)} size={size}>
-      <StyledFormRadioInput
-        className={formRadioClasses.input}
+    <StyledCheckboxRoot className={cx(checkboxClasses.root, className)} size={size}>
+      <StyledCheckboxInput
+        className={checkboxClasses.input}
         id={id}
         required={required}
         {...getInputProps()}
         ref={inputRef}
       />
-      {checked ? <MdOutlineRadioButtonChecked /> : <MdOutlineRadioButtonUnchecked />}
+      {checked ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}
       {label && (
-        <StyledFormRadioLabel className={formRadioClasses.root} {...(id && { htmlFor: id })}>
+        <StyledCheckboxLabel className={checkboxClasses.root} {...(id && { htmlFor: id })}>
           {label}
           {required && (
-            <StyledAsterisk className={formRadioClasses.asterisk}>&thinsp;*</StyledAsterisk>
+            <StyledAsterisk className={checkboxClasses.asterisk}>&thinsp;*</StyledAsterisk>
           )}
-        </StyledFormRadioLabel>
+        </StyledCheckboxLabel>
       )}
-    </StyledFormRadioRoot>
+    </StyledCheckboxRoot>
   );
 });

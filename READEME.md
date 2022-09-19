@@ -1,5 +1,3 @@
-<Meta title="Introduction/Welcome" />
-
 <p align="center">
   <a href="https://main--6327e299b25d28bf5e435580.chromatic.com/?path=/story/introduction-welcome--page">
     <img src="./src/assets/logo.svg" alt="RomanticUI" width="400" />
@@ -8,9 +6,7 @@
 
 <p align="center">Better Semantci UI for React</p>
 
-<br />
-
-<br />
+<br/>
 
 <p align="center">
   <a href="https://main--6327e299b25d28bf5e435580.chromatic.com/?path=/story/introduction-welcome--page">
@@ -18,7 +14,7 @@
   </a>
 </p>
 
-<br />
+<br/>
 
 # RomanticUI
 
