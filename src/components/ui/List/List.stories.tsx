@@ -24,13 +24,19 @@ Base.args = {
         <ListItemIcon>
           <MdChevronRight />
         </ListItemIcon>
-        <ListItemText>テスト１</ListItemText>
+        <ListItemText>テスト1</ListItemText>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <MdChevronRight />
+        </ListItemIcon>
+        <ListItemText>テスト2</ListItemText>
       </ListItem>
       <ListItem hasDivider={false}>
         <ListItemIcon>
           <MdChevronRight />
         </ListItemIcon>
-        <ListItemText>テスト２</ListItemText>
+        <ListItemText>テスト3</ListItemText>
       </ListItem>
     </>
   ),

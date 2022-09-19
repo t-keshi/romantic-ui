@@ -168,6 +168,7 @@ export const FormSelect = forwardRef<HTMLDivElement, Props>((props, ref) => {
                 disabled && formControlUnstyledClasses.disabled,
               )}
               size={size}
+              fullWidth={fullWidth}
             >
               {helperText}
             </StyledFormHelperText>
@@ -176,6 +177,7 @@ export const FormSelect = forwardRef<HTMLDivElement, Props>((props, ref) => {
             <StyledFormHelperText
               className={cx(formSelectClasses.errorMessage, formControlUnstyledClasses.error)}
               size={size}
+              fullWidth={fullWidth}
             >
               {errorMessage}
             </StyledFormHelperText>

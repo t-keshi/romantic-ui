@@ -24,15 +24,18 @@ Base.args = {
   ),
 };
 
-export const Row = Template.bind({});
+export const Row = () => (
+  <FormGroup row>
+    <Checkbox label="apple" />
+    <Checkbox label="banana" />
+    <Checkbox label="orange" />
+  </FormGroup>
+);
 
-Row.args = {
-  children: (
-    <>
-      <Checkbox label="apple" />
-      <Checkbox label="banana" />
-      <Checkbox label="orange" />
-    </>
-  ),
-  row: true,
-};
+export const Error = () => (
+  <FormGroup label="好きな果物" row errorMessage="必須入力です。">
+    <Checkbox label="apple" />
+    <Checkbox label="banana" />
+    <Checkbox label="orange" />
+  </FormGroup>
+);

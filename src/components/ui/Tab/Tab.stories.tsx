@@ -20,4 +20,5 @@ Base.args = {
       <Tab label="tab2" />
     </>
   ),
+  defaultValue: 0,
 };

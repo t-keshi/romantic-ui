@@ -7,7 +7,6 @@ import {
   InputUnstyled,
   inputUnstyledClasses,
 } from '@mui/base';
-import clsx from 'clsx';
 import { forwardRef } from 'react';
 import { styled } from '../../../theme';
 import { StyledFormHelperText } from '../../internal/StyledFormHelperText';
@@ -116,6 +115,7 @@ export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
                 disabled && formControlUnstyledClasses.disabled,
               )}
               size={size}
+              fullWidth={fullWidth}
             >
               {helperText}
             </StyledFormHelperText>
@@ -124,6 +124,7 @@ export const FormInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
             <StyledFormHelperText
               className={cx(formInputClasses.errorMessage, formControlUnstyledClasses.error)}
               size={size}
+              fullWidth={fullWidth}
             >
               {errorMessage}
             </StyledFormHelperText>

@@ -14,3 +14,9 @@ const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} 
 export const Base = Template.bind({});
 
 Base.args = {};
+
+export const WithLabel = Template.bind({});
+
+WithLabel.args = {
+  label: 'ラベル付き',
+};

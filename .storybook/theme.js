@@ -14,9 +14,7 @@ export const theme = create({
   barSelectedColor: '#319795',
   barBg: '#f9fafb',
 
-  inputBg: 'white',
-  inputBorder: 'rgba(0,0,0,.1)',
-  inputTextColor: '#f9fafb',
+  inputBorder: 'rgba(0, 0, 0, 0.18)',
   inputBorderRadius: 4,
 
   brandTitle: 'Romantic UI',
